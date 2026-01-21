@@ -1,0 +1,23 @@
+# Gambas Project File 3.0
+Startup=frmLogin
+Version=0.0.1
+Component=gb.image
+Component=gb.gui
+Component=gb.form
+Component=gb.data
+Component=gb.db
+Component=gb.db.form
+Component=gb.db.mysql
+Component=gb.db.odbc
+Component=gb.db.postgresql
+Component=gb.db.sqlite3
+Component=gb.form.dialog
+Component=gb.settings
+Component=gb.form.mdi
+Component=gb.form.print
+Component=gb.form.stock
+Component=gb.term
+Component=gb.form.terminal
+TabSize=2
+Language=en
+Packager=1

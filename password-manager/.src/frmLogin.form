@@ -1,0 +1,37 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,76,41)
+  Text = ("Password Manager")
+  Resizable = False
+  { txtUsername TextBox
+    MoveScaled(21,15,47,6)
+  }
+  { txtPassword TextBox
+    MoveScaled(21,23,47,6)
+    Password = True
+  }
+  { btnLogin Button
+    MoveScaled(21,31,22,5)
+    Text = ("Login")
+  }
+  { btnClear Button
+    MoveScaled(44,31,22,5)
+    Text = ("Clear")
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(15.4286,4,45,4)
+    Font = Font["+3"]
+    Text = ("Welcome to your Password Manager")
+  }
+  { Label1 Label
+    MoveScaled(6,14,15,8)
+    Font = Font["+3"]
+    Text = ("Username")
+  }
+  { Label2 Label
+    MoveScaled(6,23,15,8)
+    Font = Font["+3"]
+    Text = ("Password")
+  }
+}

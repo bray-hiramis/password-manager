@@ -1,0 +1,20 @@
+' Gambas module file
+
+Public $Con As New Connection
+
+Public Sub Connect()
+  
+  $Con.Type = "sqlite3"
+  
+  $Con.Host = Application.Path
+  $Con.Name = "password"
+  
+  Try $Con.Open()
+  
+  If Error Then 
+    Message.Error("Connection failed: " & Error.Text)
+  Else 
+    Print "Database connected successfully!"
+  Endif
+  
+End

@@ -1,0 +1,27 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  ModDB.Connect()
+  
+End
+
+
+Public Sub btnLogin_Click()
+
+  Dim res As Result
+  
+  res = ModDB.$Con.Find("login", "username = &1 AND password = &2", txtUsername.Text, txtPassword.Text)
+  
+  If res.Available Then 
+    Message.Info("Login Successful! Welcome " & txtUsername.Text)
+    frmPasswordManager.Show()
+    Me.Close()
+  Else 
+    Message.Error("Invalid username or password.")
+    txtUsername.Clear()
+    txtPassword.Clear()
+    txtUsername.SetFocus()
+  Endif
+
+End
