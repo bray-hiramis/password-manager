@@ -5,7 +5,6 @@ Public $Con As New Connection
 Public Sub Connect()
   
   $Con.Type = "sqlite3"
-  
   $Con.Host = Application.Path
   $Con.Name = "password"
   

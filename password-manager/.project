@@ -1,5 +1,5 @@
 # Gambas Project File 3.0
-Startup=frmLogin
+Startup=frmPasswordManager
 Version=0.0.1
 Component=gb.image
 Component=gb.gui
@@ -11,6 +11,7 @@ Component=gb.db.mysql
 Component=gb.db.odbc
 Component=gb.db.postgresql
 Component=gb.db.sqlite3
+Component=gb.desktop
 Component=gb.form.dialog
 Component=gb.settings
 Component=gb.form.mdi
