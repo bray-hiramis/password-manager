@@ -14,6 +14,7 @@ Public Sub btnLogin_Click()
   res = ModDB.$Con.Find("login", "username = &1 AND password = &2", txtUsername.Text, txtPassword.Text)
   
   If res.Available Then 
+    ModDB.$CurrentUserID = res!ID
     Message.Info("Login Successful! Welcome " & txtUsername.Text)
     frmPasswordManager.Show()
     Me.Close()

@@ -1,6 +1,7 @@
 ' Gambas module file
 
 Public $Con As New Connection
+Public $CurrentUserID As Integer ' this will save the login id of the user to use as separator to view each account's saved passwords.
 
 Public Sub Connect()
   
