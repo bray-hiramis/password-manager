@@ -26,3 +26,10 @@ Public Sub btnLogin_Click()
   Endif
 
 End
+
+Public Sub urlCreateNewAccount_Click()
+
+  Me.Close()
+  frmCreateNewAccount.Show()
+
+End

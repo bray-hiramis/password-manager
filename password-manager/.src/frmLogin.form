@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,76,41)
+  MoveScaled(0,0,76,45)
   Text = ("Password Manager")
   Resizable = False
   { txtUsername TextBox
@@ -33,5 +33,15 @@
     MoveScaled(6,23,15,8)
     Font = Font["+3"]
     Text = ("Password")
+  }
+  { urlCreateNewAccount URLLabel
+    MoveScaled(30,39,20,3)
+    Font = Font["+1"]
+    Text = ("Create New Account")
+  }
+  { urlForgotPassword URLLabel
+    MoveScaled(52,39,17,3)
+    Font = Font["+1"]
+    Text = ("Forgot Password")
   }
 }

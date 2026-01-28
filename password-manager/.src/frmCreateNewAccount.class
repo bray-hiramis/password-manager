@@ -1,0 +1,10 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+  dtSource.Connection = ModDB.$Con
+  'dtSource.Table = "security_questions"
+  'dtcomboSecurityQuestions.Table = "security_questions"
+  'dtcomboSecurityQuestions.Display = "List of Questions"
+  
+End
