@@ -2,9 +2,35 @@
 
 Public Sub Form_Open()
 
-  dtSource.Connection = ModDB.$Con
-  'dtSource.Table = "security_questions"
-  'dtcomboSecurityQuestions.Table = "security_questions"
-  'dtcomboSecurityQuestions.Display = "List of Questions"
+  Dim res As Result
   
+  res = ModDB.$Con.Find("security_questions") ' finding and connecting to the security_questions table
+  cmbSecurityQuestions.Clear()
+  
+  For Each res ' looping inside the security_questions to add all the questions inside comboBox
+    cmbSecurityQuestions.Add(res!"list_of_security_questions")
+  Next
+  
+End
+
+Public Sub btnSaveAccount_Click()
+
+  Dim res As Result
+  
+  res = ModDB.$Con.Create("login")
+  
+  res!username = txtCreateUsername.Text
+  res!password = txtCreatePassword.Text
+  res!email = txtCreateEmail.Text
+  
+  res!security_question = cmbSecurityQuestions.Text
+  res!security_answer = txtSecurityAnswer.Text
+  
+  res.Update
+  
+  Message.Info("Account Created!")
+  Me.Close()
+  ModDB.Disconnect()
+  frmLogin.Show()
+
 End

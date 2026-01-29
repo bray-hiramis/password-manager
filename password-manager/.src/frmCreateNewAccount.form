@@ -48,11 +48,8 @@
     MoveScaled(36,43,17,5)
     Text = ("Back")
   }
-  { dtSource DataSource
-    MoveScaled(19,23,55,20)
-    Connection = Connections["passwordDB"]
-    { dtcomboSecurityQuestions DataCombo
-      MoveScaled(6,8,46,5)
-    }
+  { cmbSecurityQuestions ComboBox
+    MoveScaled(25,31,46,5)
+    Placeholder = ("Choose your question")
   }
 }

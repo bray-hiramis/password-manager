@@ -1,11 +1,10 @@
 ' Gambas class file
 
 Public Sub Form_Open()
-  
-  ModDB.Connect()
-  
-End
 
+  ModDB.Connect()
+
+End
 
 Public Sub btnLogin_Click()
 
@@ -16,6 +15,7 @@ Public Sub btnLogin_Click()
   If res.Available Then 
     ModDB.$CurrentUserID = res!ID
     Message.Info("Login Successful! Welcome " & txtUsername.Text)
+    ModDB.Disconnect()
     frmPasswordManager.Show()
     Me.Close()
   Else 

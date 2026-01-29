@@ -18,3 +18,20 @@ Public Sub Connect()
   Endif
   
 End
+
+Public Sub Disconnect()
+  
+  $Con.Type = "sqlite3"
+  $Con.Host = Application.Path
+  $Con.Name = "password"
+  
+  Try $Con.Close()
+  
+  If Error Then 
+    Message.Error("Connection failed: " & Error.Text)
+  Else 
+    Print "Database disconnected!"
+  Endif
+  
+End
+
