@@ -2,6 +2,7 @@
 
 Public Sub Form_Open()
 
+  ModDB.Connect()
   Dim res As Result
   
   res = ModDB.$Con.Find("security_questions") ' finding and connecting to the security_questions table
@@ -26,11 +27,29 @@ Public Sub btnSaveAccount_Click()
   res!security_question = cmbSecurityQuestions.Text
   res!security_answer = txtSecurityAnswer.Text
   
-  res.Update
+  res.Update()
   
   Message.Info("Account Created!")
   Me.Close()
   ModDB.Disconnect()
+  frmLogin.Show()
+
+End
+
+Public Sub chbShowPassword_Click()
+
+  If chbShowPassword.Value = True Then 
+    txtCreatePassword.password = False
+  Else 
+    txtCreatePassword.Password = True
+  Endif
+
+End
+
+Public Sub btnBack_Click()
+
+  ModDB.Disconnect()
+  Me.Close()
   frmLogin.Show()
 
 End

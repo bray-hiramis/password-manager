@@ -29,6 +29,7 @@ End
 
 Public Sub urlCreateNewAccount_Click()
 
+  ModDB.Disconnect()
   Me.Close()
   frmCreateNewAccount.Show()
 
