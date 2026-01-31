@@ -16,5 +16,5 @@ vgcore.*
 .info
 .fuse_hidden*
 .profile/*
-password.sqlite3
+password
 #----
