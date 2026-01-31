@@ -5,16 +5,18 @@
   Text = ("Password Manager")
   Resizable = False
   { txtUsername TextBox
-    MoveScaled(21,15,47,6)
+    MoveScaled(14.4286,13,47,6)
     Font = Font["+1"]
+    Placeholder = ("Username")
   }
   { txtPassword TextBox
-    MoveScaled(21,23,47,6)
+    MoveScaled(14.4286,21,47,6)
     Font = Font["+1"]
+    Placeholder = ("Password")
     Password = True
   }
   { btnLogin Button
-    MoveScaled(21,31,23,5)
+    MoveScaled(14,29,23,5)
     Font = Font["+1"]
     Background = Color.LightBackground
     Foreground = Color.TextBackground
@@ -23,7 +25,7 @@
     Border = False
   }
   { btnClear Button
-    MoveScaled(45,31,23,5)
+    MoveScaled(39,29,23,5)
     Font = Font["+1"]
     Background = Color.Foreground
     Foreground = Color.TextBackground
@@ -32,28 +34,18 @@
     Border = False
   }
   { urlCreateNewAccount URLLabel
-    MoveScaled(30,39,20,3)
+    MoveScaled(22,39,20,3)
     Font = Font["+1"]
     Text = ("Create New Account")
   }
-  { urlForgotPassword URLLabel
-    MoveScaled(52,39,17,3)
+  { urlForgotUserNamePassword URLLabel
+    MoveScaled(44,39,29,3)
     Font = Font["+1"]
-    Text = ("Forgot Password")
+    Text = ("Forgot Username or Password")
   }
   { TextLabel1 TextLabel
     MoveScaled(15.4286,4,45,4)
     Font = Font["+3"]
     Text = ("Welcome to your Password Manager")
-  }
-  { Label1 Label
-    MoveScaled(6,14,15,8)
-    Font = Font["+3"]
-    Text = ("Username")
-  }
-  { Label2 Label
-    MoveScaled(6,23,15,8)
-    Font = Font["+3"]
-    Text = ("Password")
   }
 }

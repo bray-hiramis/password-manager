@@ -10,6 +10,7 @@ Public Sub Form_Open()
   
   For Each res ' looping inside the security_questions to add all the questions inside comboBox
     cmbSecurityQuestions.Add(res!"list_of_security_questions")
+    cmbSecurityQuestions.ReadOnly = True
   Next
   
 End
@@ -17,22 +18,28 @@ End
 Public Sub btnSaveAccount_Click()
 
   Dim res As Result
+  ''' Dim resEmailExist As Result ' this will store the user's email to check against the existing email in the DB
   
-  res = ModDB.$Con.Create("login")
+  res = ModDB.$Con.Find("login", "email = &1 OR username = &2", txtCreateEmail.Text, txtCreateUsername.Text)
   
-  res!username = txtCreateUsername.Text
-  res!password = txtCreatePassword.Text
-  res!email = txtCreateEmail.Text
-  
-  res!security_question = cmbSecurityQuestions.Text
-  res!security_answer = txtSecurityAnswer.Text
-  
-  res.Update()
-  
-  Message.Info("Account Created!")
-  Me.Close()
-  ModDB.Disconnect()
-  frmLogin.Show()
+  If res.Available Then
+    Message.Error("Username or email already exist, please use a different email.")
+  Else
+    res = ModDB.$Con.Create("login")
+    
+    res!username = txtCreateUsername.Text
+    res!password = txtCreatePassword.Text
+    res!email = txtCreateEmail.Text
+    
+    res!security_question = cmbSecurityQuestions.Text
+    res!security_answer = txtSecurityAnswer.Text
+    
+    res.Update()
+    
+    Message.Info("Account Created!")
+    Me.Close()
+    frmLogin.Show()
+  Endif
 
 End
 
@@ -48,8 +55,20 @@ End
 
 Public Sub btnBack_Click()
 
-  ModDB.Disconnect()
   Me.Close()
+  frmLogin.Show()
+
+End
+
+Public Sub cmbSecurityQuestions_Click()
+
+  ' this is a workaround for the text wrapping issue with combobox. user will need to point their mouse inside to see the entire security question
+  cmbSecurityQuestions.ToolTip = cmbSecurityQuestions.Text 
+
+End
+
+Public Sub Form_Close()
+
   frmLogin.Show()
 
 End

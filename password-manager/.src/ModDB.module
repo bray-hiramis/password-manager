@@ -4,6 +4,8 @@ Public $Con As New Connection
 Public $CurrentUserID As Integer ' this will save the login id of the user to use as separator to view each account's saved passwords.
 
 Public Sub Connect()
+
+  If $Con.Opened Then Return ' this checks if the connection is already opened then it apply the return (stop)
   
   $Con.Type = "sqlite3"
   $Con.Host = Application.Path
@@ -15,22 +17,6 @@ Public Sub Connect()
     Message.Error("Connection failed: " & Error.Text)
   Else 
     Print "Database connected successfully!"
-  Endif
-  
-End
-
-Public Sub Disconnect()
-  
-  $Con.Type = "sqlite3"
-  $Con.Host = Application.Path
-  $Con.Name = "password"
-  
-  Try $Con.Close()
-  
-  If Error Then 
-    Message.Error("Connection failed: " & Error.Text)
-  Else 
-    Print "Database disconnected!"
   Endif
   
 End

@@ -14,8 +14,7 @@ Public Sub btnLogin_Click()
   
   If res.Available Then 
     ModDB.$CurrentUserID = res!ID
-    Message.Info("Login Successful! Welcome " & txtUsername.Text)
-    ModDB.Disconnect()
+    Message.Info("Login Successful! Welcome " & txtUsername.Text & "!")
     frmPasswordManager.Show()
     Me.Close()
   Else 
@@ -29,8 +28,22 @@ End
 
 Public Sub urlCreateNewAccount_Click()
 
-  ModDB.Disconnect()
-  Me.Close()
+  Me.Hide()
   frmCreateNewAccount.Show()
+
+End
+
+Public Sub urlForgotUserNamePassword_Click()
+
+  Me.Hide()
+  frmForgotPassword.Show()
+
+End
+
+Public Sub btnClear_Click()
+
+  txtUsername.Clear()
+  txtUsername.SetFocus()
+  txtPassword.Clear()
 
 End
