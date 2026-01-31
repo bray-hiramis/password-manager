@@ -16,4 +16,5 @@ vgcore.*
 .info
 .fuse_hidden*
 .profile/*
+password
 #----
