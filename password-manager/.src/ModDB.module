@@ -8,10 +8,27 @@ Public Sub Connect()
   If $Con.Opened Then Return ' this checks if the connection is already opened then it apply the return (stop)
   
   $Con.Type = "sqlite3"
-  $Con.Host = Application.Path
+  '$Con.Host = Application.Path
+  '$Con.Name = "release_password"
+  
+  ' This creates a path like /home/username/.config/password-manager/
+  Dim sDataDir As String = Desktop.ConfigDir &/ "password-manager"
+  
+  ' Create the folder if it doesn't exist
+  If Not Exist(sDataDir) Then Mkdir sDataDir
+  
+  ' Set the path to the database
+  $Con.Host = sDataDir
   $Con.Name = "release_password"
   
-  Try $Con.Open()
+  ' If the database doesn't exist in .config, copy the empty one from the project
+  If Not Exist(sDataDir &/ "release_password") Then
+    Copy "release_password" To sDataDir &/ "release_password"
+  Endif
+  
+  $Con.Open()
+  
+  CheckForMigrations()
   
   If Error Then 
     Message.Error("Connection failed: " & Error.Text)
@@ -21,3 +38,45 @@ Public Sub Connect()
   
 End
 
+Public Sub CheckForMigrations() ' For database migration
+  Dim res As Result
+  Dim iCurrentVersion As Integer
+
+  ' 1. Get the current database version
+  Try res = ModDB.$Con.Exec("SELECT version FROM db_info LIMIT 1")
+  
+  ' If the table doesn't exist yet (for older v0.0.1 users), 
+  ' we assume they are on version 0.
+  If Error Or If Not res.Available Then 
+    iCurrentVersion = 0
+  Else
+    iCurrentVersion = res!version
+  Endif
+
+  ' 2. Apply updates sequentially
+  
+  ' MIGRATION TO VERSION 0.0.1: Add db_info table and a new column to saved_password
+  If iCurrentVersion < 1 Then
+    ModDB.$Con.Begin ' Use a transaction so it's all or nothing
+    
+    ' Create the info table
+    ModDB.$Con.Exec("CREATE TABLE IF NOT EXISTS db_info (version INTEGER)")
+    ModDB.$Con.Exec("INSERT INTO db_info (version) VALUES (1)")
+    
+    ' Example: Adding a "notes" column to your password table
+    ' ModDB.$Con.Exec("ALTER TABLE saved_password ADD COLUMN notes TEXT DEFAULT ''")
+    
+    ModDB.$Con.Commit
+    Print "Database migrated to Version 1"
+  Endif
+
+  ' MIGRATION TO VERSION 0.0.2: (For future use)
+  ' If iCurrentVersion < 2 Then
+  '   ModDB.$Con.Exec("ALTER TABLE login ADD COLUMN last_login TEXT")
+  '   ModDB.$Con.Exec("UPDATE db_info SET version = 2")
+  ' Endif
+
+Catch
+  ModDB.$Con.Rollback
+  Message.Error("Critical: Database migration failed! " & Error.Text)
+End
