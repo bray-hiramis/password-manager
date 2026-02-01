@@ -9,7 +9,7 @@ Public Sub Connect()
   
   $Con.Type = "sqlite3"
   $Con.Host = Application.Path
-  $Con.Name = "password"
+  $Con.Name = "release_password"
   
   Try $Con.Open()
   
