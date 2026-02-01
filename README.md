@@ -22,13 +22,13 @@ A secure, offline password manager built with Gambas3 and SQLite.
 
 ## Flowchart
 
-![UI Flowchart](Screenshots/Password Manager FlowChart.png)
+![UI Flowchart](Screenshots/password_manager_ui_flowchart.png)
 
-![Database Flowchart](Screenshots/Password Manager Database.drawio.png)
+![Database Flowchart](Screenshots/pasword_manager_database_flowchart.png)
 
 ## Tech Stack
-<img src="Screenshots/gambas-256.png" alt="gambas 3" width="40" height="40"> 
-<img src="Screenshots/sqlite-svgrepo-com.svg" alt="sqlite" width="40" height="40">
+GAMBAS 3 <img src="Screenshots/gambas-256.png" alt="gambas 3" width="70" height="70"> 
+SQLite <img src="Screenshots/sqlite-svgrepo-com.svg" alt="sqlite" width="70" height="70">
 
 ## Installation
 
